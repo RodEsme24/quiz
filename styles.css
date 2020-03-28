@@ -1,15 +1,10 @@
-.navbar-brand {
+#left{
     float: left;
-    margin: 20px 50px;
 }
-#timer {
-    position: relative;
- 
-    margin: 20px 50px;
+
+#right{
+    float: right;
 }
-.sameline {
-    overflow: auto;
-}
-.center {
-    text-align: center;
+.sameline{
+    display: inline;
 }
