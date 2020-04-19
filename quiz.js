@@ -46,44 +46,41 @@ var currentQuestion=0
         var questionElement=document.querySelector("#question")
 
      document.querySelector("#answer").innerHTML=""
-     var currentDetails = quiz[currentQuestion];
-     document.getElementById("question").innerHTML=currentDetails.question;
-        
-        console.log(currentDetails) 
-        //currentQuestion++
-        for (var k=0; k<currentDetails.optionsAnswers.length;k++)
-        {
-            var option=currentDetails.optionsAnswers[k]
-            var optionnode=document.createElement ("button");
-            optionnode.addEventListener("click", function(){
+     //Recursive function
+    getQuestion(currentQuestion)
+    });
+    
+    function getQuestion(currentQuestion) {
+        var currentDetails = quiz[currentQuestion];
+        document.getElementById("question").innerHTML=currentDetails.question;
+        $("#answer").empty()
+           for (var k=0; k<currentDetails.optionsAnswers.length;k++)
+           {
+               console.log("asldfk")
+               var option=currentDetails.optionsAnswers[k]
+               var optionnode=document.createElement("button");
+               
+               var space = document.createElement("br");
+               var optiontext = document.createTextNode(option);//<div>1</div>");
+               optionnode.appendChild(optiontext);
+               document.getElementById("answer").appendChild(optionnode).appendChild(space);
+               optionnode.addEventListener("click", function(){
                 //console.log(this.textContent)
                 //console.log(quiz[currentQuestion].answer);
                 if (this.textContent==quiz[currentQuestion].answer){
-                    console.log("correct");
+                 $("#correcto").text("correct");
+                 Scores++;
+                 $("#scores").text(`Score so far: ${Scores}/5`);
                 }
-                else{
-                    console.log("wrong")
+                else {
+                    $("#correcto").text("wrong");
                 }
-
-            
-                //1 == 1 //true
-                //1 == "1" //true
-                //1 === "1" //false
+                getQuestion(++currentQuestion)
+                
             });
-            var space = document.createElement("br");
-            var optiontext = document.createTextNode(option);//<div>1</div>");
-            optionnode.appendChild(optiontext);
-            console.log(optionnode)
-            document.getElementById("answer").appendChild(optionnode).appendChild(space);
-
-
-        }
-    
-    
-    
-    });
-    
-
+           }
+     }
+var Scores=0
 
     //quiz[i].question
     //console.log(currentquestion.question);
